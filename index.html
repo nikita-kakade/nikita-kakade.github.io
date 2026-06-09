@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Nikita Kakade's personal website: projects, experience, notes, and contact links."
+    />
+    <meta name="theme-color" content="#050505" />
+    <title>Nikita Kakade</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="Nikita Kakade home">
+        <span class="lambda">lambda</span>
+        <span>nikita</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <p class="kicker">Hi, I am</p>
+        <h1>Nikita Kakade.</h1>
+        <p class="lead">
+          I like building useful systems, learning in public, and turning rough
+          ideas into projects people can actually try.
+        </p>
+        <div class="hero-links" aria-label="Profile links">
+          <a href="mailto:hello@example.com">Email</a>
+          <a href="https://github.com/nikita-kakade">GitHub</a>
+          <a href="#">LinkedIn</a>
+          <a href="#projects">Projects</a>
+        </div>
+      </section>
+
+      <section class="intro-grid" id="about" aria-label="About Nikita">
+        <article class="terminal-card">
+          <div class="terminal-bar" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <pre><code>const nikita = {
+  focus: "software + systems",
+  currently: "building a personal site",
+  location: "add your city",
+  status: "open to collaboration"
+};</code></pre>
+        </article>
+
+        <div class="about-copy">
+          <p class="section-label">About</p>
+          <h2>A compact page for the things I build and the ideas I keep returning to.</h2>
+          <p>
+            This site is set up as a clean personal homepage: a quick intro,
+            selected projects, experience notes, and direct links. Replace these
+            placeholders with your real bio, interests, school, work, and favorite
+            problems.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section-head">
+          <p class="section-label">Featured projects</p>
+          <a href="#contact">Want the full list?</a>
+        </div>
+        <div class="project-list">
+          <article class="project-row">
+            <div>
+              <p class="meta">Project</p>
+              <h3>Autonomous Thing I Built</h3>
+            </div>
+            <p>
+              A short description goes here. Mention what it does, what you used,
+              and what made the project interesting.
+            </p>
+            <a href="#">View</a>
+          </article>
+          <article class="project-row">
+            <div>
+              <p class="meta">Research / class</p>
+              <h3>Smart System Prototype</h3>
+            </div>
+            <p>
+              Use this slot for a robotics, AI, web, data, hardware, or design
+              project that shows your taste and technical range.
+            </p>
+            <a href="#">View</a>
+          </article>
+          <article class="project-row">
+            <div>
+              <p class="meta">Experiment</p>
+              <h3>Weekend Build Log</h3>
+            </div>
+            <p>
+              Not every project needs to be grand. Small experiments make the
+              site feel alive and give people a reason to come back.
+            </p>
+            <a href="#">View</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="experience">
+        <div class="section-head">
+          <p class="section-label">Experience</p>
+          <a href="#">Resume</a>
+        </div>
+        <div class="timeline">
+          <article>
+            <span class="date">2026</span>
+            <div>
+              <h3>Role or Program</h3>
+              <p>
+                Add a concise description of your work, team, lab, internship,
+                club, or class. Keep it concrete and outcome-focused.
+              </p>
+            </div>
+          </article>
+          <article>
+            <span class="date">Now</span>
+            <div>
+              <h3>Currently Learning</h3>
+              <p>
+                Add the technologies, papers, courses, or creative muscles you
+                are actively developing.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact-panel" id="contact">
+        <p class="section-label">Contact</p>
+        <h2>Send a note, share an idea, or point me at something worth reading.</h2>
+        <div class="contact-links">
+          <a href="mailto:hello@example.com">hello@example.com</a>
+          <a href="https://github.com/nikita-kakade">github.com/nikita-kakade</a>
+          <a href="#">linkedin.com/in/your-handle</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Built by Nikita Kakade.</span>
+      <span id="year"></span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
