@@ -5,155 +5,314 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Nikita Kakade's personal website: projects, experience, notes, and contact links."
+      content="A technical learning platform shell for science, technology, mathematics, and interdisciplinary user-provided content."
     />
-    <meta name="theme-color" content="#050505" />
-    <title>Nikita Kakade</title>
+    <meta name="theme-color" content="#f8fafc" />
+    <meta property="og:title" content="Knowledge Atlas" />
+    <meta
+      property="og:description"
+      content="Organize articles, interactives, learning paths, and prerequisites across technical topics."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Knowledge Atlas</title>
+    <link rel="canonical" href="/" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <header class="site-header">
-      <a class="brand" href="#home" aria-label="Nikita Kakade home">
-        <span class="lambda">lambda</span>
-        <span>nikita</span>
+      <a class="brand" href="#home" aria-label="Knowledge Atlas home">
+        <span class="brand-mark" aria-hidden="true">KA</span>
+        <span>Knowledge Atlas</span>
       </a>
-      <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        Menu
+      </button>
+
+      <nav class="site-nav" id="primary-nav" aria-label="Primary navigation">
+        <a href="#topics">Topics</a>
+        <a href="#library">Library</a>
+        <a href="#paths">Learning paths</a>
+        <a href="#resources">Resources</a>
+        <a href="#account">Account</a>
       </nav>
+
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        <span aria-hidden="true">T</span>
+        <span class="theme-label">Theme</span>
+      </button>
     </header>
 
-    <main id="home">
-      <section class="hero">
-        <p class="kicker">Hi, I am</p>
-        <h1>Nikita Kakade.</h1>
-        <p class="lead">
-          I like building useful systems, learning in public, and turning rough
-          ideas into projects people can actually try.
-        </p>
-        <div class="hero-links" aria-label="Profile links">
-          <a href="mailto:hello@example.com">Email</a>
-          <a href="https://github.com/nikita-kakade">GitHub</a>
-          <a href="#">LinkedIn</a>
-          <a href="#projects">Projects</a>
+    <main id="main">
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">Technical platform shell</p>
+          <h1>Organize deep user-provided content without burying the path through it.</h1>
+          <p class="lead">
+            A responsive framework for science, technology, math, and interdisciplinary articles.
+            Add your own writing, interactives, media, references, and instructional material.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#library">Browse article templates</a>
+            <a class="button" href="#account">Open learner dashboard</a>
+          </div>
         </div>
+
+        <aside class="hero-panel" aria-label="Platform status">
+          <div>
+            <span class="stat">19</span>
+            <span>topic channels</span>
+          </div>
+          <div>
+            <span class="stat" id="saved-count">0</span>
+            <span>saved articles</span>
+          </div>
+          <div>
+            <span class="stat" id="progress-count">0%</span>
+            <span>local progress</span>
+          </div>
+        </aside>
       </section>
 
-      <section class="intro-grid" id="about" aria-label="About Nikita">
-        <article class="terminal-card">
-          <div class="terminal-bar" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <pre><code>const nikita = {
-  focus: "software + systems",
-  currently: "building a personal site",
-  location: "add your city",
-  status: "open to collaboration"
-};</code></pre>
-        </article>
+      <section class="utility-bar" aria-label="Site tools">
+        <label class="search-box" for="site-search">
+          <span>Search</span>
+          <input
+            id="site-search"
+            type="search"
+            placeholder="Search topics, prerequisites, or article metadata"
+            autocomplete="off"
+          />
+        </label>
+        <label for="difficulty-filter">
+          <span>Difficulty</span>
+          <select id="difficulty-filter">
+            <option value="all">All levels</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          </select>
+        </label>
+      </section>
 
-        <div class="about-copy">
-          <p class="section-label">About</p>
-          <h2>A compact page for the things I build and the ideas I keep returning to.</h2>
+      <section class="section" id="topics">
+        <div class="section-head">
+          <p class="eyebrow">Navigation</p>
+          <h2>Topic landing pages</h2>
           <p>
-            This site is set up as a clean personal homepage: a quick intro,
-            selected projects, experience notes, and direct links. Replace these
-            placeholders with your real bio, interests, school, work, and favorite
-            problems.
+            Each topic can become its own landing page with featured articles, prerequisites,
+            FAQs, learning paths, glossary entries, and crossover links.
           </p>
         </div>
+        <div class="topic-grid" id="topic-grid" aria-live="polite"></div>
       </section>
 
-      <section class="section" id="projects">
+      <section class="section split" id="library">
         <div class="section-head">
-          <p class="section-label">Featured projects</p>
-          <a href="#contact">Want the full list?</a>
+          <p class="eyebrow">Article system</p>
+          <h2>User-provided content, platform-provided structure</h2>
+          <p>
+            Cards below are sample metadata records. Replace them with your article data and
+            content renderer while keeping the same shell behavior.
+          </p>
         </div>
-        <div class="project-list">
-          <article class="project-row">
-            <div>
-              <p class="meta">Project</p>
-              <h3>Autonomous Thing I Built</h3>
-            </div>
-            <p>
-              A short description goes here. Mention what it does, what you used,
-              and what made the project interesting.
-            </p>
-            <a href="#">View</a>
-          </article>
-          <article class="project-row">
-            <div>
-              <p class="meta">Research / class</p>
-              <h3>Smart System Prototype</h3>
-            </div>
-            <p>
-              Use this slot for a robotics, AI, web, data, hardware, or design
-              project that shows your taste and technical range.
-            </p>
-            <a href="#">View</a>
-          </article>
-          <article class="project-row">
-            <div>
-              <p class="meta">Experiment</p>
-              <h3>Weekend Build Log</h3>
-            </div>
-            <p>
-              Not every project needs to be grand. Small experiments make the
-              site feel alive and give people a reason to come back.
-            </p>
-            <a href="#">View</a>
-          </article>
-        </div>
+        <div class="article-grid" id="article-grid" aria-live="polite"></div>
       </section>
 
-      <section class="section" id="experience">
+      <section class="article-template" id="article-template" aria-labelledby="template-title">
+        <div class="article-main">
+          <p class="eyebrow">Display template</p>
+          <h2 id="template-title">Article page structure</h2>
+          <p class="article-subtitle">
+            A long-form layout for user-provided articles, diagrams, embedded interactives,
+            references, and key takeaways.
+          </p>
+
+          <div class="article-meta" aria-label="Article metadata">
+            <span class="badge">Intermediate</span>
+            <span>Author name</span>
+            <span>Published date</span>
+            <span>Estimated read time calculated from content</span>
+          </div>
+
+          <div class="prerequisites">
+            <strong>Prerequisites</strong>
+            <a href="#glossary">Vector spaces</a>
+            <a href="#glossary">Differential equations</a>
+            <a href="#glossary">Numerical stability</a>
+          </div>
+
+          <article class="content-frame">
+            <h3>Semantic content area</h3>
+            <p>
+              User-provided paragraphs, headings, figures, code snippets, videos, and diagrams
+              render here with accessible spacing and readable measure. Inline glossary terms
+              can expose definitions, like
+              <span class="tooltip" tabindex="0" data-tip="A linked concept shown at the point of need.">
+                linked concepts
+              </span>
+              without interrupting the article flow.
+            </p>
+            <div class="embed-placeholder" role="img" aria-label="Interactive content placeholder">
+              Embedded interactive, diagram, or simulation provided by the user
+            </div>
+            <aside class="takeaways">
+              <h3>Key takeaways</h3>
+              <ul>
+                <li>Summary bullets can be supplied per article.</li>
+                <li>Prerequisites and related reading come from metadata.</li>
+                <li>Progress, bookmarks, and sharing sit close to the reading experience.</li>
+              </ul>
+            </aside>
+          </article>
+        </div>
+
+        <aside class="article-side" aria-label="Article actions">
+          <button class="button primary" type="button" id="mark-featured">Mark sample complete</button>
+          <button class="button" type="button" id="save-featured">Save sample article</button>
+          <div>
+            <h3>Share</h3>
+            <div class="share-row">
+              <a href="https://twitter.com/intent/tweet?text=Knowledge%20Atlas" rel="noopener">Twitter</a>
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=/" rel="noopener">LinkedIn</a>
+              <button type="button" id="copy-link">Copy link</button>
+            </div>
+          </div>
+          <div>
+            <h3>Related articles</h3>
+            <ul class="related-list" id="related-list"></ul>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section" id="paths">
         <div class="section-head">
-          <p class="section-label">Experience</p>
-          <a href="#">Resume</a>
+          <p class="eyebrow">Progression</p>
+          <h2>Learning paths and crossovers</h2>
+          <p>
+            Build beginner-to-advanced sequences, then connect topic intersections like
+            cryptography plus number theory or climate science plus economics.
+          </p>
         </div>
-        <div class="timeline">
+        <div class="path-grid">
           <article>
-            <span class="date">2026</span>
-            <div>
-              <h3>Role or Program</h3>
-              <p>
-                Add a concise description of your work, team, lab, internship,
-                club, or class. Keep it concrete and outcome-focused.
-              </p>
-            </div>
+            <h3>Foundations of Modeling</h3>
+            <ol>
+              <li>Probability basics</li>
+              <li>Differential equations</li>
+              <li>Climate feedback systems</li>
+            </ol>
           </article>
           <article>
-            <span class="date">Now</span>
-            <div>
-              <h3>Currently Learning</h3>
-              <p>
-                Add the technologies, papers, courses, or creative muscles you
-                are actively developing.
-              </p>
-            </div>
+            <h3>Computation and Security</h3>
+            <ol>
+              <li>Discrete mathematics</li>
+              <li>Algorithms</li>
+              <li>Cryptographic protocols</li>
+            </ol>
+          </article>
+          <article>
+            <h3>Bioengineering Bridge</h3>
+            <ol>
+              <li>Cell biology</li>
+              <li>Materials science</li>
+              <li>Medical device design</li>
+            </ol>
           </article>
         </div>
       </section>
 
-      <section class="contact-panel" id="contact">
-        <p class="section-label">Contact</p>
-        <h2>Send a note, share an idea, or point me at something worth reading.</h2>
-        <div class="contact-links">
-          <a href="mailto:hello@example.com">hello@example.com</a>
-          <a href="https://github.com/nikita-kakade">github.com/nikita-kakade</a>
-          <a href="#">linkedin.com/in/your-handle</a>
+      <section class="section resource-layout" id="resources">
+        <div>
+          <p class="eyebrow">Resources</p>
+          <h2>Curated external links, glossary, FAQ, and updates</h2>
+          <div class="resource-list">
+            <a href="#" aria-label="External resource placeholder">External resource placeholder</a>
+            <a href="#" aria-label="Dataset placeholder">Dataset placeholder</a>
+            <a href="#" aria-label="Reference collection placeholder">Reference collection placeholder</a>
+          </div>
+        </div>
+
+        <div class="stack">
+          <section class="panel" id="glossary" aria-labelledby="glossary-title">
+            <h3 id="glossary-title">Glossary</h3>
+            <dl>
+              <dt>Concept node</dt>
+              <dd>A reusable definition that can appear inline, in prerequisites, and in topic pages.</dd>
+              <dt>Crossover</dt>
+              <dd>A relationship between topics, articles, or learning paths from different domains.</dd>
+            </dl>
+          </section>
+
+          <section class="panel" id="faq" aria-labelledby="faq-title">
+            <h3 id="faq-title">FAQ</h3>
+            <details>
+              <summary>Where does article content come from?</summary>
+              <p>All articles, media, interactives, and instructional text are supplied separately by the user.</p>
+            </details>
+            <details>
+              <summary>Can this support accounts?</summary>
+              <p>The static shell models account behavior locally; a production build can connect these flows to authentication and a database.</p>
+            </details>
+          </section>
+
+          <section class="panel" id="updates" aria-labelledby="updates-title">
+            <h3 id="updates-title">Changelog</h3>
+            <ol class="updates">
+              <li><time datetime="2026-06-09">June 9, 2026</time> Platform shell initialized.</li>
+              <li><time datetime="2026-06-09">June 9, 2026</time> Search, filters, progress, and bookmarks added.</li>
+            </ol>
+          </section>
+        </div>
+      </section>
+
+      <section class="section account-panel" id="account">
+        <div>
+          <p class="eyebrow">Account features</p>
+          <h2>Personalization shell</h2>
+          <p>
+            This prototype stores saves, completion, and preferences in the browser. Connect the
+            same UI to authentication, analytics, newsletter, and account management services later.
+          </p>
+          <form class="newsletter" aria-label="Newsletter signup">
+            <label for="email">Newsletter signup</label>
+            <div>
+              <input id="email" type="email" placeholder="reader@example.com" />
+              <button class="button primary" type="submit">Join</button>
+            </div>
+            <p class="form-note" role="status"></p>
+          </form>
+        </div>
+        <div class="dashboard">
+          <h3>Your dashboard</h3>
+          <p><strong id="dashboard-saved">0</strong> saved articles</p>
+          <p><strong id="dashboard-complete">0</strong> completed articles</p>
+          <p><strong id="dashboard-theme">System</strong> theme preference</p>
+        </div>
+      </section>
+
+      <section class="section sitemap" id="sitemap">
+        <p class="eyebrow">Sitemap</p>
+        <h2>HTML sitemap</h2>
+        <div class="sitemap-grid">
+          <a href="#home">Homepage</a>
+          <a href="#topics">Topic landing pages</a>
+          <a href="#library">Article display pages</a>
+          <a href="#paths">Learning paths</a>
+          <a href="#resources">Resources</a>
+          <a href="#faq">FAQ</a>
+          <a href="#updates">Changelog</a>
+          <a href="#account">Account</a>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <span>Built by Nikita Kakade.</span>
-      <span id="year"></span>
+      <span>Knowledge Atlas platform shell.</span>
+      <span><a href="sitemap.xml">XML sitemap</a> &middot; <span id="year"></span></span>
     </footer>
 
     <script src="script.js"></script>
