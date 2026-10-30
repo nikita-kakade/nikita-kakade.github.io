@@ -1,320 +1,553 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="A technical learning platform shell for science, technology, mathematics, and interdisciplinary user-provided content."
-    />
-    <meta name="theme-color" content="#f8fafc" />
-    <meta property="og:title" content="Knowledge Atlas" />
-    <meta
-      property="og:description"
-      content="Organize articles, interactives, learning paths, and prerequisites across technical topics."
-    />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <title>Knowledge Atlas</title>
-    <link rel="canonical" href="/" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nikita Kakade · Student engineer</title>
+  <meta name="description" content="Nikita Kakade is a 10th grader and student engineer at Dayton Regional STEM School in Dayton, Ohio, who designs and builds robots, apps and assistive technology, including a low-cost autonomous wheelchair attachment.">
+  <link rel="canonical" href="https://nikita-kakade.github.io/">
+  <meta name="theme-color" content="#1A3C34">
 
-    <header class="site-header">
-      <a class="brand" href="#home" aria-label="Knowledge Atlas home">
-        <span class="brand-mark" aria-hidden="true">KA</span>
-        <span>Knowledge Atlas</span>
-      </a>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nikita Kakade">
+  <meta property="og:url" content="https://nikita-kakade.github.io/">
+  <meta property="og:title" content="Nikita Kakade · Student engineer">
+  <meta property="og:description" content="Hard math, helpful machines. Assistive technology, robotics and apps from a student engineer in Dayton, Ohio.">
+  <meta property="og:image" content="https://nikita-kakade.github.io/assets/gallery/turtle.jpg">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="A turtle drawn in Desmos from green piecewise curves on a coordinate grid.">
+  <meta name="twitter:card" content="summary">
 
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
-        Menu
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%231A3C34'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='36' font-weight='600' text-anchor='middle' fill='%23EAE8E1'%3EN%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&amp;family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..600,0..100,0..1&amp;display=swap">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Progressive enhancement: script.js adds .js-nav / .js-reveal and turns the gallery links into a lightbox itself,
+       so nothing is hidden or collapsed unless the code that controls it is running. -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header surface surface--white" id="top">
+    <nav class="nav" aria-label="Primary">
+      <!-- Wordmark first in the source so keyboard focus starts with it; the grid places everything visually. -->
+      <a class="wordmark" href="#top" aria-label="Nikita Kakade, back to top">Nikita Kakade</a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" hidden>
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+        <span class="nav-toggle-label">Menu</span>
       </button>
 
-      <nav class="site-nav" id="primary-nav" aria-label="Primary navigation">
-        <a href="#topics">Topics</a>
-        <a href="#library">Library</a>
-        <a href="#paths">Learning paths</a>
-        <a href="#resources">Resources</a>
-        <a href="#account">Account</a>
-      </nav>
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-list nav-left">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#more">More work</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+        <ul class="nav-list nav-right">
+          <li><a href="#awards">Awards</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a class="btn-outline nav-github" href="https://github.com/nikita-kakade" rel="noopener">GitHub<span aria-hidden="true">&nbsp;↗</span></a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
-      <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
-        <span aria-hidden="true">T</span>
-        <span class="theme-label">Theme</span>
-      </button>
-    </header>
+  <main id="main">
 
-    <main id="main">
-      <section class="hero" id="home">
-        <div class="hero-copy">
-          <p class="eyebrow">Technical platform shell</p>
-          <h1>Organize deep user-provided content without burying the path through it.</h1>
-          <p class="lead">
-            A responsive framework for science, technology, math, and interdisciplinary articles.
-            Add your own writing, interactives, media, references, and instructional material.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#library">Browse article templates</a>
-            <a class="button" href="#account">Open learner dashboard</a>
-          </div>
+    <!-- ============ 1 · HERO — almost pure type (Draft B) ============ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="tag hero-tag reveal"><span class="nowrap">10th grader ·</span> <span class="nowrap">Dayton Regional STEM School</span></p>
+        <div class="hero-head">
+          <h1 class="hero-title reveal" id="hero-title">Hard math,<br> helpful machines.</h1>
+          <figure class="stamp hero-stamp reveal">
+            <svg viewBox="0 0 200 200" role="img" aria-labelledby="stamp-hero-t">
+              <title id="stamp-hero-t">Superior rating at Ohio State Science Day, in 2025 and again in 2026</title>
+              <defs>
+                <path id="ring-hero" d="M100,100 m-72,0 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0"/>
+              </defs>
+              <circle cx="100" cy="100" r="97" class="stamp-disc"/>
+              <g class="stamp-ring">
+                <text class="stamp-ring-text"><textPath href="#ring-hero" textLength="446" lengthAdjust="spacing">OHIO STATE SCIENCE DAY • SUPERIOR •</textPath></text>
+              </g>
+              <text x="100" y="112" text-anchor="middle" class="stamp-big">2×</text>
+              <text x="100" y="138" text-anchor="middle" class="stamp-small">2025 · 2026</text>
+            </svg>
+          </figure>
         </div>
+        <p class="hero-lede reveal">I’m Nikita Kakade, a student engineer. I design and build tools that help people move and live more independently, then test them until they work.</p>
+        <p class="hero-cta reveal"><a class="pill" href="#work">See the work</a></p>
 
-        <aside class="hero-panel" aria-label="Platform status">
-          <div>
-            <span class="stat">19</span>
-            <span>topic channels</span>
-          </div>
-          <div>
-            <span class="stat" id="saved-count">0</span>
-            <span>saved articles</span>
-          </div>
-          <div>
-            <span class="stat" id="progress-count">0%</span>
-            <span>local progress</span>
-          </div>
-        </aside>
-      </section>
+      </div>
+    </section>
 
-      <section class="utility-bar" aria-label="Site tools">
-        <label class="search-box" for="site-search">
-          <span>Search</span>
-          <input
-            id="site-search"
-            type="search"
-            placeholder="Search topics, prerequisites, or article metadata"
-            autocomplete="off"
-          />
-        </label>
-        <label for="difficulty-filter">
-          <span>Difficulty</span>
-          <select id="difficulty-filter">
-            <option value="all">All levels</option>
-            <option value="Beginner">Beginner</option>
-            <option value="Intermediate">Intermediate</option>
-            <option value="Advanced">Advanced</option>
-          </select>
-        </label>
-      </section>
+    <!-- ============ 2 · SELECTED WORK — Draft B's heading, then Draft C's three colour bands ============ -->
+    <section class="section work" id="work" aria-labelledby="work-title">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <p class="eyebrow">Selected work</p>
+          <h2 class="section-title" id="work-title">Built, tested,<br> built again.</h2>
+        </header>
+      </div>
 
-      <section class="section" id="topics">
-        <div class="section-head">
-          <p class="eyebrow">Navigation</p>
-          <h2>Topic landing pages</h2>
-          <p>
-            Each topic can become its own landing page with featured articles, prerequisites,
-            FAQs, learning paths, glossary entries, and crossover links.
-          </p>
-        </div>
-        <div class="topic-grid" id="topic-grid" aria-live="polite"></div>
-      </section>
-
-      <section class="section split" id="library">
-        <div class="section-head">
-          <p class="eyebrow">Article system</p>
-          <h2>User-provided content, platform-provided structure</h2>
-          <p>
-            Cards below are sample metadata records. Replace them with your article data and
-            content renderer while keeping the same shell behavior.
-          </p>
-        </div>
-        <div class="article-grid" id="article-grid" aria-live="polite"></div>
-      </section>
-
-      <section class="article-template" id="article-template" aria-labelledby="template-title">
-        <div class="article-main">
-          <p class="eyebrow">Display template</p>
-          <h2 id="template-title">Article page structure</h2>
-          <p class="article-subtitle">
-            A long-form layout for user-provided articles, diagrams, embedded interactives,
-            references, and key takeaways.
-          </p>
-
-          <div class="article-meta" aria-label="Article metadata">
-            <span class="badge">Intermediate</span>
-            <span>Author name</span>
-            <span>Published date</span>
-            <span>Estimated read time calculated from content</span>
-          </div>
-
-          <div class="prerequisites">
-            <strong>Prerequisites</strong>
-            <a href="#glossary">Vector spaces</a>
-            <a href="#glossary">Differential equations</a>
-            <a href="#glossary">Numerical stability</a>
-          </div>
-
-          <article class="content-frame">
-            <h3>Semantic content area</h3>
-            <p>
-              User-provided paragraphs, headings, figures, code snippets, videos, and diagrams
-              render here with accessible spacing and readable measure. Inline glossary terms
-              can expose definitions, like
-              <span class="tooltip" tabindex="0" data-tip="A linked concept shown at the point of need.">
-                linked concepts
-              </span>
-              without interrupting the article flow.
-            </p>
-            <div class="embed-placeholder" role="img" aria-label="Interactive content placeholder">
-              Embedded interactive, diagram, or simulation provided by the user
+      <div class="cb-bands">
+        <!-- FLAGSHIP 1 — navy band -->
+        <section class="cb-band cb-band--navy cb-project" id="wheelchair" aria-labelledby="wc-title">
+          <div class="wrap">
+            <div class="cb-project-grid">
+              <div class="cb-project-copy reveal">
+                <p class="tag">01 · Engineering · 2025–26</p>
+                <p class="eyebrow">Low-Cost Autonomous Wheelchair Attachment</p>
+                <h3 class="cb-title" id="wc-title">A wheelchair that stops on its own.</h3>
+                <p>Many people who use a manual wheelchair lack the strength to push it, and powered chairs are expensive and hard to get. So I built a removable, bolt-on attachment: a Segway scooter drives the chair, a Raspberry Pi 4 reads an ultrasonic sensor, and a servo on a mount I 3D-printed presses and releases the throttle. Nothing is rewired, and it comes off in under 30 minutes.</p>
+                <p>My biggest lesson: stopping isn’t the same as stopping <em>comfortably</em>. When testers found hard stops uncomfortable, I wrote a gradual-deceleration routine, and rider comfort rose from 2.6 to 4.0 out of 5.</p>
+                <p class="cb-awards"><span class="dot" aria-hidden="true"></span><span>It also won the <strong>IEEE Award</strong> and <strong>ASME 1st&nbsp;Place</strong>.</span></p>
+                <div class="cb-actions">
+                  <a class="pill" href="https://youtu.be/k4GwlHW__SY" rel="noopener" data-gallery-open="g-wheelchair"><span>Watch the video<span class="visually-hidden"> of the wheelchair attachment</span><span class="ext-cue" aria-hidden="true">&nbsp;↗</span></span></a>
+                  <a class="pill pill--line" href="https://partner.projectboard.world/oas/project/low-cost-autonomous-wheelchair-attachment-designed-with-self-driving-technologies-to-improve-mobilit-wrwrje" rel="noopener"><span>ProjectBoard<span class="visually-hidden"> entry for the wheelchair attachment</span><span aria-hidden="true">&nbsp;↗</span></span></a>
+                </div>
+              </div>
+              <div class="cb-project-stamp">
+                <div class="cb-stamp cb-stamp--white" role="img" aria-label="Award: Superior rating, 2026 Ohio State Science Day">
+                  <svg viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+                  <defs><path id="ring-wc" d="M100,100 m-73,0 a73,73 0 1,1 146,0 a73,73 0 1,1 -146,0"/></defs>
+                  <circle class="cb-stamp-disk" cx="100" cy="100" r="98"/>
+                  <g class="cb-stamp-ring"><text><textPath href="#ring-wc" textLength="458" lengthAdjust="spacing">Ohio State Science Day · 2026 · Superior ·</textPath></text></g>
+                  <circle class="cb-stamp-rule" cx="100" cy="100" r="62"/>
+                  <text class="cb-stamp-big" x="100" y="109" text-anchor="middle">Superior</text>
+                  </svg>
+                </div>
+              </div>
             </div>
-            <aside class="takeaways">
-              <h3>Key takeaways</h3>
-              <ul>
-                <li>Summary bullets can be supplied per article.</li>
-                <li>Prerequisites and related reading come from metadata.</li>
-                <li>Progress, bookmarks, and sharing sit close to the reading experience.</li>
-              </ul>
-            </aside>
-          </article>
-        </div>
+            <ul class="cb-stats reveal" aria-label="Test results">
+              <li><span class="cb-stat-num">0.38<span class="cb-unit">s</span></span><span class="cb-stat-label">average reaction time</span></li>
+              <li><span class="cb-stat-num">28/30</span><span class="cb-stat-label">stops within 50&nbsp;cm</span></li>
+              <li><span class="cb-stat-num">200+</span><span class="cb-stat-label">press cycles my 3D-printed servo mount survived</span></li>
+            </ul>
+          </div>
+        </section>
 
-        <aside class="article-side" aria-label="Article actions">
-          <button class="button primary" type="button" id="mark-featured">Mark sample complete</button>
-          <button class="button" type="button" id="save-featured">Save sample article</button>
-          <div>
-            <h3>Share</h3>
-            <div class="share-row">
-              <a href="https://twitter.com/intent/tweet?text=Knowledge%20Atlas" rel="noopener">Twitter</a>
-              <a href="https://www.linkedin.com/shareArticle?mini=true&url=/" rel="noopener">LinkedIn</a>
-              <button type="button" id="copy-link">Copy link</button>
+        <!-- FLAGSHIP 2 — cocoa on light cream -->
+        <section class="cb-band cb-band--cocoa-light cb-project cb-project--flip" id="self-drive" aria-labelledby="sd-title">
+          <div class="wrap">
+            <div class="cb-project-grid">
+              <div class="cb-project-copy reveal">
+                <p class="tag">02 · Business plan &amp; pitch · 2026</p>
+                <p class="eyebrow">Self-Drive and Thrive</p>
+                <h3 class="cb-title" id="sd-title">A wheelchair you steer with a wave.</h3>
+                <p>My business plan and pitch for a $350 gesture-controlled electric wheelchair, about one-tenth the price of a traditional one. It’s built on affordable microcontrollers, DC motors, lithium-ion batteries and hand-gesture sensors. Wave right to turn right, move forward to accelerate, show a stop gesture to brake.</p>
+                <p>It builds on the “future work” list from my wheelchair attachment, and it maps the market, competitors, costs, marketing and risks.</p>
+                <div class="cb-actions">
+                  <a class="pill" href="https://youtu.be/PE6AyQq_A1c" rel="noopener" data-gallery-open="g-pitch"><span>Watch the pitch<span class="visually-hidden"> for Self-Drive and Thrive</span><span class="ext-cue" aria-hidden="true">&nbsp;↗</span></span></a>
+                  <a class="pill pill--line" href="https://partner.projectboard.world/oas/project/self-drive-and-thrive-ooyrpj" rel="noopener"><span>ProjectBoard<span class="visually-hidden"> entry for Self-Drive and Thrive</span><span aria-hidden="true">&nbsp;↗</span></span></a>
+                </div>
+              </div>
+              <div class="cb-project-stamp">
+                <div class="cb-stamp cb-stamp--cocoa" role="img" aria-label="Award: Honorable Mention and a $200 cash award, 2026 Ohio STEP, STEM Business Plan and Pitch">
+                  <svg viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+                  <defs><path id="ring-sd" d="M100,100 m-73,0 a73,73 0 1,1 146,0 a73,73 0 1,1 -146,0"/></defs>
+                  <circle class="cb-stamp-disk" cx="100" cy="100" r="98"/>
+                  <g class="cb-stamp-ring cb-stamp-ring--small"><text><textPath href="#ring-sd" textLength="458" lengthAdjust="spacing">Ohio STEP 2026 · Business Plan &amp; Pitch ·</textPath></text></g>
+                  <circle class="cb-stamp-rule" cx="100" cy="100" r="62"/>
+                  <text class="cb-stamp-mid" x="100" y="96" text-anchor="middle">Honorable</text>
+                  <text class="cb-stamp-mid" x="100" y="117" text-anchor="middle">Mention</text>
+                  <text class="cb-stamp-note" x="100" y="137" text-anchor="middle">+ $200 award</text>
+                  </svg>
+                </div>
+              </div>
             </div>
+            <ul class="cb-stats reveal" aria-label="Plan at a glance">
+              <li><span class="cb-stat-num">$350</span><span class="cb-stat-label">one-tenth of a traditional electric wheelchair</span></li>
+              <li><span class="cb-stat-num">30</span><span class="cb-stat-label">wheelchair users tested my project</span></li>
+              <li><span class="cb-stat-num">10<span class="cb-unit">of 59</span></span><span class="cb-stat-label">projects awarded at state, and mine was one of them</span></li>
+            </ul>
           </div>
-          <div>
-            <h3>Related articles</h3>
-            <ul class="related-list" id="related-list"></ul>
-          </div>
-        </aside>
-      </section>
+        </section>
 
-      <section class="section" id="paths">
-        <div class="section-head">
-          <p class="eyebrow">Progression</p>
-          <h2>Learning paths and crossovers</h2>
-          <p>
-            Build beginner-to-advanced sequences, then connect topic intersections like
-            cryptography plus number theory or climate science plus economics.
-          </p>
-        </div>
-        <div class="path-grid">
-          <article>
-            <h3>Foundations of Modeling</h3>
-            <ol>
-              <li>Probability basics</li>
-              <li>Differential equations</li>
-              <li>Climate feedback systems</li>
-            </ol>
-          </article>
-          <article>
-            <h3>Computation and Security</h3>
-            <ol>
-              <li>Discrete mathematics</li>
-              <li>Algorithms</li>
-              <li>Cryptographic protocols</li>
-            </ol>
-          </article>
-          <article>
-            <h3>Bioengineering Bridge</h3>
-            <ol>
-              <li>Cell biology</li>
-              <li>Materials science</li>
-              <li>Medical device design</li>
-            </ol>
-          </article>
-        </div>
-      </section>
-
-      <section class="section resource-layout" id="resources">
-        <div>
-          <p class="eyebrow">Resources</p>
-          <h2>Curated external links, glossary, FAQ, and updates</h2>
-          <div class="resource-list">
-            <a href="#" aria-label="External resource placeholder">External resource placeholder</a>
-            <a href="#" aria-label="Dataset placeholder">Dataset placeholder</a>
-            <a href="#" aria-label="Reference collection placeholder">Reference collection placeholder</a>
-          </div>
-        </div>
-
-        <div class="stack">
-          <section class="panel" id="glossary" aria-labelledby="glossary-title">
-            <h3 id="glossary-title">Glossary</h3>
-            <dl>
-              <dt>Concept node</dt>
-              <dd>A reusable definition that can appear inline, in prerequisites, and in topic pages.</dd>
-              <dt>Crossover</dt>
-              <dd>A relationship between topics, articles, or learning paths from different domains.</dd>
-            </dl>
-          </section>
-
-          <section class="panel" id="faq" aria-labelledby="faq-title">
-            <h3 id="faq-title">FAQ</h3>
-            <details>
-              <summary>Where does article content come from?</summary>
-              <p>All articles, media, interactives, and instructional text are supplied separately by the user.</p>
-            </details>
-            <details>
-              <summary>Can this support accounts?</summary>
-              <p>The static shell models account behavior locally; a production build can connect these flows to authentication and a database.</p>
-            </details>
-          </section>
-
-          <section class="panel" id="updates" aria-labelledby="updates-title">
-            <h3 id="updates-title">Changelog</h3>
-            <ol class="updates">
-              <li><time datetime="2026-06-09">June 9, 2026</time> Platform shell initialized.</li>
-              <li><time datetime="2026-06-09">June 9, 2026</time> Search, filters, progress, and bookmarks added.</li>
-            </ol>
-          </section>
-        </div>
-      </section>
-
-      <section class="section account-panel" id="account">
-        <div>
-          <p class="eyebrow">Account features</p>
-          <h2>Personalization shell</h2>
-          <p>
-            This prototype stores saves, completion, and preferences in the browser. Connect the
-            same UI to authentication, analytics, newsletter, and account management services later.
-          </p>
-          <form class="newsletter" aria-label="Newsletter signup">
-            <label for="email">Newsletter signup</label>
-            <div>
-              <input id="email" type="email" placeholder="reader@example.com" />
-              <button class="button primary" type="submit">Join</button>
+        <!-- FLAGSHIP 3 — navy on sky -->
+        <section class="cb-band cb-band--sky cb-project" id="weatherwear" aria-labelledby="ww-title">
+          <div class="wrap">
+            <div class="cb-project-grid">
+              <div class="cb-project-copy reveal">
+                <p class="tag">03 · Code · 2024–25</p>
+                <p class="eyebrow">WeatherWear</p>
+                <h3 class="cb-title" id="ww-title">Weather in, outfits out.</h3>
+                <p>Raw forecast numbers don’t tell you what to wear, so I built a Python app with a Kivy interface that does. Enter a zip code and it pulls live weather from OpenWeatherMap and WeatherAPI, maps ten conditions onto researched ranges, and suggests clothing, hairstyles, makeup and skincare.</p>
+                <p>It grew from a temperature-only terminal prototype, and four months of testing with friends shaped the rest. The goal: “lower your decisions without lowering your comfort.”</p>
+                <div class="cb-actions">
+                  <a class="pill" href="https://youtu.be/lYEw5z23btE" rel="noopener" data-gallery-open="g-weatherwear"><span>Watch the video<span class="visually-hidden"> of WeatherWear</span><span class="ext-cue" aria-hidden="true">&nbsp;↗</span></span></a>
+                  <a class="pill pill--line" href="https://partner.projectboard.world/oas/project/developing-an-app-that-uses-your-weather-location-to-give-personalized-time-saving-suggestions-geonpw" rel="noopener"><span>ProjectBoard<span class="visually-hidden"> entry for WeatherWear</span><span aria-hidden="true">&nbsp;↗</span></span></a>
+                </div>
+              </div>
+              <div class="cb-project-stamp">
+                <div class="cb-stamp cb-stamp--navy" role="img" aria-label="Award: Superior rating, 2025 Ohio State Science Day">
+                  <svg viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+                  <defs><path id="ring-ww" d="M100,100 m-73,0 a73,73 0 1,1 146,0 a73,73 0 1,1 -146,0"/></defs>
+                  <circle class="cb-stamp-disk" cx="100" cy="100" r="98"/>
+                  <g class="cb-stamp-ring cb-stamp-ring--reverse"><text><textPath href="#ring-ww" textLength="458" lengthAdjust="spacing">Ohio State Science Day · 2025 · Superior ·</textPath></text></g>
+                  <circle class="cb-stamp-rule" cx="100" cy="100" r="62"/>
+                  <text class="cb-stamp-big" x="100" y="109" text-anchor="middle">Superior</text>
+                  </svg>
+                </div>
+              </div>
             </div>
-            <p class="form-note" role="status"></p>
-          </form>
-        </div>
-        <div class="dashboard">
-          <h3>Your dashboard</h3>
-          <p><strong id="dashboard-saved">0</strong> saved articles</p>
-          <p><strong id="dashboard-complete">0</strong> completed articles</p>
-          <p><strong id="dashboard-theme">System</strong> theme preference</p>
-        </div>
-      </section>
+            <ul class="cb-stats reveal" aria-label="WeatherWear at a glance">
+              <li><span class="cb-stat-num">10</span><span class="cb-stat-label">weather conditions it reads, from UV index to visibility</span></li>
+              <li><span class="cb-stat-num">9</span><span class="cb-stat-label">different temperature types I researched, “Frigid” to “Sweltering”</span></li>
+              <li><span class="cb-stat-num">2<span class="cb-unit">months</span></span><span class="cb-stat-label">to build it, all hand-coded</span></li>
+            </ul>
+          </div>
+        </section>
+      </div>
 
-      <section class="section sitemap" id="sitemap">
-        <p class="eyebrow">Sitemap</p>
-        <h2>HTML sitemap</h2>
-        <div class="sitemap-grid">
-          <a href="#home">Homepage</a>
-          <a href="#topics">Topic landing pages</a>
-          <a href="#library">Article display pages</a>
-          <a href="#paths">Learning paths</a>
-          <a href="#resources">Resources</a>
-          <a href="#faq">FAQ</a>
-          <a href="#updates">Changelog</a>
-          <a href="#account">Account</a>
+      <!-- 04 — robotics & leadership, in Draft B's row style -->
+      <div class="wrap">
+        <ol class="rows rows--after" start="4">
+          <li class="row reveal">
+            <span class="row-num" aria-hidden="true">04</span>
+            <article class="row-body" aria-labelledby="p4-title">
+              <p class="tag">Robotics &amp; leadership · 2025–present</p>
+              <h3 class="row-title" id="p4-title">Captain of my FRC team</h3>
+              <p class="row-summary">I’m captain of my school’s FIRST Robotics Competition team, Team 10011 Gridrunners, for one season so far. I keep build season on track, mentor teammates as we fabricate and put the robot together, and pitch in on strategy and in the pit at competitions.</p>
+              <div class="row-awards">
+                <p class="row-award"><span class="dot" aria-hidden="true"></span><span>Mentor’s Award (Leadership) from my FRC team, 2026</span></p>
+                <p class="row-award"><span class="dot" aria-hidden="true"></span><span>Maximum&nbsp;Potential leadership certification</span></p>
+              </div>
+            </article>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ 3 · MORE WORK — compact two-column index (Draft B) ============ -->
+    <section class="section index" id="more" aria-labelledby="more-title">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <p class="eyebrow">More work</p>
+          <h2 class="section-title" id="more-title">Smaller builds,<br> same curiosity.</h2>
+        </header>
+
+        <ul class="index-list">
+          <li class="index-item reveal">
+            <p class="tag">Unreal Engine · May 2026</p>
+            <h3 class="index-title">Cold War Museum</h3>
+            <p>A 3D museum you walk and jump through, with exhibits on the Korean War, Tsar Bomba, early-warning radar and Apollo 11, presented as a narrated <span class="nowrap">8-minute</span> tour. <a class="text-link" href="assets/video/cold-war-museum.mp4" data-gallery-open="g-cold-war">Watch the tour<span class="visually-hidden"> of the Cold War Museum</span></a></p>
+          </li>
+          <li class="index-item reveal">
+            <p class="tag">Speed Champion · 2026</p>
+            <h3 class="index-title">B&#8209;WISER roller coaster</h3>
+            <p>I designed and built the fastest roller coaster in the B&#8209;WISER competition. It was named Speed Champion and won a $100 scholarship to the B&#8209;WISER summer camp.</p>
+          </li>
+          <li class="index-item reveal">
+            <p class="tag">Survey research · Fall 2025</p>
+            <h3 class="index-title">AI in school</h3>
+            <p>I surveyed 679 students in <span class="nowrap">grades 6–12</span> about how they see themselves as students and how they use AI. I expected “bad” students to lean on AI more. Most students didn’t, either way.</p>
+          </li>
+          <li class="index-item reveal">
+            <p class="tag">Desmos · Dec 2024</p>
+            <h3 class="index-title">Piecewise Turtle</h3>
+            <p>A turtle drawn entirely from domain-restricted pieces: exponential curves with bases 0.3 and 2, linear and constant pieces, and a circle for the head. <a class="text-link" href="assets/gallery/turtle.jpg" data-gallery-open="g-turtle">See the graph<span class="visually-hidden"> of the Piecewise Turtle</span></a></p>
+          </li>
+          <li class="index-item reveal">
+            <p class="tag">HTML &amp; CSS · Dec 2023</p>
+            <h3 class="index-title">The Roman Tribune</h3>
+            <p>A newspaper website I hand-coded in HTML and CSS as a Roman correspondent, with stories on the Colosseum, aqueducts and Vesuvius, obituaries and a review of <cite>Meditations</cite>.</p>
+          </li>
+          <li class="index-item reveal">
+            <p class="tag">Storybook · Nov 2023</p>
+            <h3 class="index-title">Pencil Pouch Pals</h3>
+            <p>An illustrated children’s book I co-wrote: Pencil learns refusal skills from his friend Pen to stand up to negative peer pressure. My favorite part was writing the story.</p>
+          </li>
+          <li class="index-item reveal">
+            <p class="tag">Python turtle graphics · Oct 2023</p>
+            <h3 class="index-title">Thank-you card</h3>
+            <p>About 780 lines of hand-coded Python: rotated rhombi bloom into 8-point star flowers, and an octagon comes together from 45° turns. <a class="text-link" href="assets/video/thank-you-card.mp4" data-gallery-open="g-thank-you">Watch it draw<span class="visually-hidden">: the Python thank-you card</span></a></p>
+          </li>
+          <li class="index-item reveal">
+            <p class="tag">Reverse engineering · Technical writing</p>
+            <h3 class="index-title">Doorknob manual</h3>
+            <p>I took a locking doorknob apart and wrote its manual, with labeled parts, a costed bill of materials and 13 reassembly steps. Then I proposed a lever handle and an easier-to-compress spring for accessibility.</p>
+          </li>
+          <li class="index-item reveal">
+            <p class="tag">Model</p>
+            <h3 class="index-title">Bridge model</h3>
+            <p>A popsicle-stick deck with spaghetti uprights, on piers of real pebbles over a blue-gravel river with an origami boat. <a class="text-link" href="assets/gallery/bridge.jpg" data-gallery-open="g-bridge">See the photo<span class="visually-hidden"> of the bridge model</span></a></p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 5 · GALLERY — every tile is a real link; script.js opens it in the lightbox ============ -->
+    <section class="section gallery surface surface--cream" id="gallery" aria-labelledby="gallery-title">
+      <div class="wrap">
+        <header class="section-head gallery-head reveal">
+          <p class="eyebrow">Gallery</p>
+          <h2 class="section-title" id="gallery-title">Photos &amp; videos.</h2>
+        </header>
+
+        <ul class="gallery-grid">
+          <li class="g-item reveal">
+            <a class="g-tile g-tile--block g-tile--navy" id="g-wheelchair" href="https://youtu.be/k4GwlHW__SY" target="_blank" rel="noopener" data-type="youtube" data-yt="k4GwlHW__SY" data-desc="My low-cost autonomous wheelchair attachment.">
+              <span class="visually-hidden">Play video: </span><span class="g-block-title">Wheelchair attachment</span><span class="visually-hidden nojs-note"> (opens YouTube in a new tab)</span>
+              <span class="g-play" aria-hidden="true"></span>
+            </a>
+            <p class="g-cap"><span class="g-title">Wheelchair attachment video</span> <span class="g-meta">Video · YouTube · 2026</span></p>
+          </li>
+          <li class="g-item reveal">
+            <a class="g-tile g-tile--block g-tile--cocoa" id="g-pitch" href="https://youtu.be/PE6AyQq_A1c" target="_blank" rel="noopener" data-type="youtube" data-yt="PE6AyQq_A1c" data-desc="My pitch for a $350 gesture-controlled electric wheelchair.">
+              <span class="visually-hidden">Play video: </span><span class="g-block-title">Self-Drive and Thrive</span><span class="visually-hidden nojs-note"> (opens YouTube in a new tab)</span>
+              <span class="g-play" aria-hidden="true"></span>
+            </a>
+            <p class="g-cap"><span class="g-title">Self-Drive and Thrive pitch</span> <span class="g-meta">Video · YouTube · 2026</span></p>
+          </li>
+          <li class="g-item reveal">
+            <a class="g-tile g-tile--block g-tile--forest" id="g-weatherwear" href="https://youtu.be/lYEw5z23btE" target="_blank" rel="noopener" data-type="youtube" data-yt="lYEw5z23btE" data-desc="How my Python app turns a zip code into what to wear.">
+              <span class="visually-hidden">Play video: </span><span class="g-block-title">WeatherWear</span><span class="visually-hidden nojs-note"> (opens YouTube in a new tab)</span>
+              <span class="g-play" aria-hidden="true"></span>
+            </a>
+            <p class="g-cap"><span class="g-title">WeatherWear presentation</span> <span class="g-meta">Video · YouTube · 2025</span></p>
+          </li>
+          <li class="g-item reveal">
+            <a class="g-tile" id="g-cold-war" href="assets/video/cold-war-museum.mp4" data-type="video" data-poster="assets/gallery/cold-war-poster.jpg" data-desc="A narrated walk through the 3D museum I built in Unreal Engine. Exhibits: a notebook that stopped a grenade in the Korean War, an AC-47 gunship photo from the Vietnam War, the Tsar Bomba, a 1952 early-warning radar training model, and Apollo 11.">
+              <img src="assets/gallery/cold-war-thumb.jpg" width="756" height="564" loading="lazy" decoding="async" alt="">
+              <span class="visually-hidden">Play video: Cold War Museum tour</span>
+              <span class="g-play" aria-hidden="true"></span>
+            </a>
+            <p class="g-cap"><span class="g-title">Cold War Museum tour</span> <span class="g-meta">Video · 8:12 · May 2026</span></p>
+          </li>
+          <li class="g-item reveal">
+            <a class="g-tile" id="g-thank-you" href="assets/video/thank-you-card.mp4" data-type="video" data-poster="assets/gallery/thank-you-poster.jpg" data-desc="My Python program drawing the card, one turtle stroke at a time.">
+              <img src="assets/gallery/thank-you-thumb.jpg" width="645" height="484" loading="lazy" decoding="async" alt="">
+              <span class="visually-hidden">Play video: Python thank-you card</span>
+              <span class="g-play" aria-hidden="true"></span>
+            </a>
+            <p class="g-cap"><span class="g-title">Python thank-you card</span> <span class="g-meta">Video · 1:06 · Oct 2023</span></p>
+          </li>
+          <li class="g-item reveal">
+            <a class="g-tile" id="g-turtle" href="assets/gallery/turtle.jpg" data-type="image" data-w="800" data-h="800" data-desc="Exponential curves, linear and constant pieces, and a circle for the head.">
+              <span class="visually-hidden">View larger: </span><img src="assets/gallery/turtle-thumb.jpg" width="720" height="540" loading="lazy" decoding="async"
+                   alt="A turtle drawn in Desmos from green piecewise curves on a coordinate grid.">
+            </a>
+            <p class="g-cap"><span class="g-title">Piecewise Turtle</span> <span class="g-meta">Desmos graph · Dec 2024</span></p>
+          </li>
+          <li class="g-item reveal">
+            <a class="g-tile" id="g-bridge" href="assets/gallery/bridge.jpg" data-type="image" data-w="1600" data-h="1200" data-desc="Popsicle sticks, spaghetti and river rock.">
+              <span class="visually-hidden">View larger: </span><img src="assets/gallery/bridge-thumb.jpg" width="800" height="600" loading="lazy" decoding="async"
+                   alt="My bridge model: a popsicle-stick deck with spaghetti uprights on pebble piers over a blue-gravel river, beside a small wooden house.">
+            </a>
+            <p class="g-cap"><span class="g-title">Bridge model</span> <span class="g-meta">Photo</span></p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 6 · AWARDS — typographic list, small stamp accents (Draft B) ============ -->
+    <section class="section awards" id="awards" aria-labelledby="awards-title">
+      <div class="wrap awards-grid">
+        <header class="awards-head reveal">
+          <p class="eyebrow">Recognition</p>
+          <h2 class="section-title" id="awards-title">A few ribbons<br> along the way.</h2>
+          <div class="mini-stamps" aria-hidden="true">
+            <svg class="stamp mini-stamp mini-stamp-a" viewBox="0 0 200 200" focusable="false">
+              <defs><path id="ring-ieee" d="M100,100 m-70,0 a70,70 0 1,1 140,0 a70,70 0 1,1 -140,0"/></defs>
+              <circle cx="100" cy="100" r="97" class="stamp-disc"/>
+              <g class="stamp-ring"><text class="stamp-ring-text"><textPath href="#ring-ieee" textLength="434" lengthAdjust="spacing">IEEE AWARD • ONE OF 6 WINNERS •</textPath></text></g>
+              <text x="100" y="114" text-anchor="middle" class="stamp-mid">IEEE</text>
+            </svg>
+            <svg class="stamp mini-stamp mini-stamp-b" viewBox="0 0 200 200" focusable="false">
+              <defs><path id="ring-asme" d="M100,100 m-70,0 a70,70 0 1,1 140,0 a70,70 0 1,1 -140,0"/></defs>
+              <circle cx="100" cy="100" r="97" class="stamp-disc"/>
+              <g class="stamp-ring"><text class="stamp-ring-text"><textPath href="#ring-asme" textLength="434" lengthAdjust="spacing">ASME • FIRST PLACE • ASME • FIRST PLACE •</textPath></text></g>
+              <text x="100" y="118" text-anchor="middle" class="stamp-mid">1st</text>
+            </svg>
+            <svg class="stamp mini-stamp mini-stamp-c" viewBox="0 0 200 200" focusable="false">
+              <defs><path id="ring-yif" d="M100,100 m-70,0 a70,70 0 1,1 140,0 a70,70 0 1,1 -140,0"/></defs>
+              <circle cx="100" cy="100" r="97" class="stamp-disc"/>
+              <g class="stamp-ring"><text class="stamp-ring-text"><textPath href="#ring-yif" textLength="434" lengthAdjust="spacing">YOUNG INVENTOR FELLOWSHIP •</textPath></text></g>
+              <text x="100" y="116" text-anchor="middle" class="stamp-mid stamp-mid--sm">2026</text>
+            </svg>
+          </div>
+        </header>
+
+        <div class="awards-lists">
+          <h3 class="award-group reveal">State competitions &amp; programs</h3>
+          <ul class="award-list">
+            <li class="award reveal"><span class="award-main"><span class="award-title">Ohio Young Inventor Fellowship</span><span class="award-note">Ohio Academy of Science</span></span><span class="award-year">2026</span></li>
+            <li class="award reveal"><span class="award-main"><span class="award-title">Ohio State Science Day: Superior</span><span class="award-note">Autonomous wheelchair attachment</span></span><span class="award-year">2026</span></li>
+            <li class="award reveal"><span class="award-main"><span class="award-title">Buckeye Science &amp; Engineering Fair: Superior</span><span class="award-note">Autonomous wheelchair attachment</span></span><span class="award-year">2026</span></li>
+            <li class="award reveal"><span class="award-main"><span class="award-title">Ohio STEP: Honorable Mention + $200 cash&nbsp;award</span><span class="award-note">STEM Business Plan &amp; Pitch, <span class="nowrap">grades 9–12</span> · <span class="nowrap">Self-Drive and Thrive</span></span></span><span class="award-year">2026</span></li>
+            <li class="award reveal"><span class="award-main"><span class="award-title">Governor’s Thomas Edison Award for Excellence: 1st&nbsp;Place</span><span class="award-note">Information Science &amp; Technology Research, <span class="nowrap">grades 7–9</span></span></span><span class="award-year">2026</span></li>
+            <li class="award reveal"><span class="award-main"><span class="award-title">Ohio State Science Day: Superior</span><span class="award-note">WeatherWear</span></span><span class="award-year">2025</span></li>
+            <li class="award reveal"><span class="award-main"><span class="award-title">Governor’s Thomas Edison Award for Excellence: 3rd&nbsp;Place</span><span class="award-note">Information Science &amp; Technology Research, <span class="nowrap">grades 7–9</span></span></span><span class="award-year">2025</span></li>
+          </ul>
+
+          <h3 class="award-group reveal">School, camp &amp; regional</h3>
+          <ul class="award-list">
+            <li class="award reveal"><span class="award-main"><span class="award-title">B&#8209;WISER Roller Coaster: 2nd&nbsp;Place</span><span class="award-note">Speed Champion, plus a $100 scholarship to the B&#8209;WISER summer camp</span></span><span class="award-year">2026</span></li>
+            <li class="award reveal"><span class="award-main"><span class="award-title">ASME: 1st Place</span><span class="award-note">Dayton Regional STEM School Science Fair · Autonomous wheelchair attachment</span></span><span class="award-year">2026</span></li>
+            <li class="award reveal"><span class="award-main"><span class="award-title">IEEE Award: one of 6 winners</span><span class="award-note">Dayton Regional STEM School Science Fair · Autonomous wheelchair attachment</span></span><span class="award-year">2026</span></li>
+            <li class="award reveal"><span class="award-main"><span class="award-title">2nd Place Overall</span><span class="award-note">Dayton Regional STEM School Science Fair · Autonomous wheelchair attachment</span></span><span class="award-year">2026</span></li>
+            <li class="award reveal"><span class="award-main"><span class="award-title">Dayton Regional STEM School Science Fair: Superior</span><span class="award-note">Autonomous wheelchair attachment</span></span><span class="award-year">2026</span></li>
+            <li class="award reveal"><span class="award-main"><span class="award-title">Dayton Regional STEM School Science Fair: Superior</span><span class="award-note">WeatherWear</span></span><span class="award-year">2025</span></li>
+          </ul>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
 
-    <footer class="site-footer">
-      <span>Knowledge Atlas platform shell.</span>
-      <span><a href="sitemap.xml">XML sitemap</a> &middot; <span id="year"></span></span>
-    </footer>
 
-    <script src="script.js"></script>
-  </body>
+    <!-- ============ 8 · SKILLS ============ -->
+    <section class="section skills" id="skills" aria-labelledby="skills-title">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <p class="eyebrow">Skills</p>
+          <h2 class="section-title" id="skills-title">What I work with.</h2>
+        </header>
+
+        <dl class="skill-groups">
+          <div class="skill-group reveal">
+            <dt class="skill-name">Code</dt>
+            <dd><ul class="skill-tags">
+              <li class="skill skill--key">Python</li>
+              <li class="skill skill--key">HTML &amp; CSS</li>
+              <li class="skill">Astropy</li>
+              <li class="skill">YOLO11</li>
+              <li class="skill">Kivy (Python GUIs)</li>
+              <li class="skill">REST APIs (OpenWeatherMap, WeatherAPI)</li>
+              <li class="skill">Live weather data &amp; JSON</li>
+              <li class="skill">Rule-based recommendation logic</li>
+              <li class="skill">Raspberry Pi GPIO (RPi.GPIO)</li>
+              <li class="skill">Python turtle graphics</li>
+            </ul></dd>
+          </div>
+          <div class="skill-group reveal">
+            <dt class="skill-name">Electronics &amp; build</dt>
+            <dd><ul class="skill-tags">
+              <li class="skill">Raspberry Pi 4</li>
+              <li class="skill">Arduino</li>
+              <li class="skill">Ultrasonic sensors (HC-SR04)</li>
+              <li class="skill">Servo control (PWM)</li>
+              <li class="skill">Voltage dividers &amp; power regulation</li>
+              <li class="skill">Wiring &amp; multimeter debugging</li>
+              <li class="skill">Onshape CAD</li>
+              <li class="skill">3D printing (PLA, PETG)</li>
+              <li class="skill">Rapid prototyping</li>
+              <li class="skill">Reverse engineering</li>
+            </ul></dd>
+          </div>
+          <div class="skill-group reveal">
+            <dt class="skill-name">Design &amp; research</dt>
+            <dd><ul class="skill-tags">
+              <li class="skill">Human-centered, assistive design</li>
+              <li class="skill">User testing &amp; feedback</li>
+              <li class="skill">Test design &amp; statistics (t-tests, regression)</li>
+              <li class="skill">Survey design &amp; data analysis (spreadsheets, COUNTIFS, charts)</li>
+              <li class="skill">Unreal Engine (3D levels)</li>
+              <li class="skill">Desmos &amp; math modeling</li>
+            </ul></dd>
+          </div>
+          <div class="skill-group reveal">
+            <dt class="skill-name">Communication</dt>
+            <dd><ul class="skill-tags">
+              <li class="skill">Technical writing (manuals, reports)</li>
+              <li class="skill">Business plans &amp; pitching</li>
+              <li class="skill">Storytelling</li>
+            </ul></dd>
+          </div>
+          <div class="skill-group reveal">
+            <dt class="skill-name">Leadership</dt>
+            <dd><ul class="skill-tags">
+              <li class="skill">FRC team captain (1 season)</li>
+              <li class="skill">Maximum Potential leadership certification</li>
+            </ul></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer surface surface--forest" aria-labelledby="footer-title">
+    <svg class="paper paper-bloom" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+      <path transform="translate(50 50)" d="M0 -44 L9 -12 L40 -22 L16 0 L40 22 L9 12 L0 44 L-9 12 L-40 22 L-16 0 L-40 -22 L-9 -12 Z"/>
+    </svg>
+
+    <div class="wrap footer-inner">
+      <div class="footer-lead">
+        <h2 class="footer-title" id="footer-title">Thanks for<br> stopping by.</h2>
+        <p class="footer-field-label">Find my code on GitHub</p>
+        <a class="footer-field" href="https://github.com/nikita-kakade" rel="noopener">
+          <span class="footer-field-text">github.com/nikita-kakade</span>
+          <span class="footer-field-go">Visit<span aria-hidden="true">&nbsp;↗</span></span>
+        </a>
+        <!-- add email here -->
+      </div>
+
+      <div class="footer-cols">
+        <nav class="footer-col" aria-labelledby="footer-nav-title">
+          <h3 class="footer-col-head" id="footer-nav-title">On this page</h3>
+          <ul>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#more">More work</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#awards">Awards</a></li>
+            <li><a href="#skills">Skills</a></li>
+          </ul>
+        </nav>
+        <div class="footer-col">
+          <h3 class="footer-col-head">Watch</h3>
+          <ul>
+            <li><a href="https://youtu.be/k4GwlHW__SY" rel="noopener" data-gallery-open="g-wheelchair">Wheelchair attachment</a></li>
+            <li><a href="https://youtu.be/PE6AyQq_A1c" rel="noopener" data-gallery-open="g-pitch">Self-Drive and Thrive&nbsp;pitch</a></li>
+            <li><a href="https://youtu.be/lYEw5z23btE" rel="noopener" data-gallery-open="g-weatherwear">WeatherWear</a></li>
+            <li><a href="assets/video/cold-war-museum.mp4" data-gallery-open="g-cold-war">Cold War Museum tour</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-head">Elsewhere</h3>
+          <ul>
+            <li><a href="https://github.com/nikita-kakade" rel="noopener">GitHub</a></li>
+            <li><a href="https://partner.projectboard.world/oas" rel="noopener">ProjectBoard</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="footer-legal">
+        <p>© 2026 Nikita Kakade</p>
+        <p><a href="#top">Back to top<span aria-hidden="true">&nbsp;↑</span></a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Gallery lightbox: only ever opened by script.js (showModal). Without JavaScript every tile is a plain link. -->
+  <dialog class="lightbox" id="lightbox" aria-labelledby="lb-title">
+    <div class="lb-inner">
+      <div class="lb-top">
+        <p class="lb-count" aria-hidden="true"></p>
+        <button class="lb-close" type="button">Close<span class="lb-x" aria-hidden="true"></span></button>
+      </div>
+      <div class="lb-media"></div>
+      <div class="lb-foot">
+        <div class="lb-text">
+          <h2 class="lb-title" id="lb-title"></h2>
+          <p class="lb-meta"></p>
+          <p class="lb-desc"></p>
+        </div>
+        <div class="lb-nav">
+          <button class="lb-prev" type="button"><span aria-hidden="true">←&nbsp;</span>Previous</button>
+          <button class="lb-next" type="button">Next<span aria-hidden="true">&nbsp;→</span></button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+</body>
 </html>

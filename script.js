@@ -1,364 +1,259 @@
-const topics = [
-  "Physics",
-  "Biology",
-  "Geology",
-  "Mathematics",
-  "Computer Science",
-  "Engineering",
-  "History",
-  "Economics",
-  "Game Theory",
-  "Chemistry",
-  "Climate Science",
-  "Medicine/Health",
-  "Music Theory",
-  "Cryptography",
-  "Materials Science",
-  "Robotics",
-  "Linguistics",
-  "Architecture",
-  "Probability"
-];
+/* Nikita Kakade — progressive enhancement only. The page is complete without this file.
+   Every hidden or collapsed state in styles.css is gated on a class this file adds itself
+   (.js-nav, .js-reveal), so if this file fails to load, nothing stays hidden. Gallery tiles are
+   plain links to the full image, video or YouTube page until this file turns them into a lightbox. */
+(function () {
+  'use strict';
 
-const articles = [
-  {
-    id: "climate-feedbacks",
-    title: "Climate Feedback Systems",
-    topic: "Climate Science",
-    difficulty: "Intermediate",
-    words: 1650,
-    prerequisites: ["Differential equations", "Energy balance", "Probability"],
-    summary: "A metadata-driven slot for a user-provided article about feedback loops.",
-    tags: ["modeling", "systems", "earth science"]
-  },
-  {
-    id: "zero-knowledge",
-    title: "Zero-Knowledge Proofs",
-    topic: "Cryptography",
-    difficulty: "Advanced",
-    words: 2400,
-    prerequisites: ["Discrete mathematics", "Algorithms", "Probability"],
-    summary: "A placeholder for a technical explanation with proofs and embedded demos.",
-    tags: ["security", "math", "computer science"]
-  },
-  {
-    id: "cell-materials",
-    title: "Cells and Smart Materials",
-    topic: "Materials Science",
-    difficulty: "Beginner",
-    words: 980,
-    prerequisites: ["Cell biology", "Chemical bonds"],
-    summary: "A bridge article showing how metadata can connect biology and engineering.",
-    tags: ["biology", "engineering", "medicine"]
-  },
-  {
-    id: "game-theory-markets",
-    title: "Game Theory in Market Design",
-    topic: "Game Theory",
-    difficulty: "Intermediate",
-    words: 1450,
-    prerequisites: ["Utility", "Equilibrium", "Microeconomics"],
-    summary: "A user-content container for examples, diagrams, and references.",
-    tags: ["economics", "strategy", "math"]
-  },
-  {
-    id: "robot-motion",
-    title: "Robot Motion Planning",
-    topic: "Robotics",
-    difficulty: "Advanced",
-    words: 2100,
-    prerequisites: ["Graph search", "Linear algebra", "Control systems"],
-    summary: "An article template ready for simulations, figures, and code snippets.",
-    tags: ["engineering", "computer science", "math"]
-  },
-  {
-    id: "music-symmetry",
-    title: "Symmetry in Music Theory",
-    topic: "Music Theory",
-    difficulty: "Beginner",
-    words: 1120,
-    prerequisites: ["Intervals", "Modular arithmetic"],
-    summary: "A crossover example for math, history, and music analysis content.",
-    tags: ["music", "mathematics", "history"]
-  }
-];
+  var doc = document.documentElement;
+  var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var toArray = function (list) { return Array.prototype.slice.call(list); };
 
-const storage = {
-  saved: "knowledge-atlas-saved",
-  complete: "knowledge-atlas-complete",
-  theme: "knowledge-atlas-theme"
-};
+  /* ---------- 1. Mobile menu ---------- */
+  var header = document.querySelector('.site-header');
+  var toggle = document.querySelector('.nav-toggle');
+  var menu = document.getElementById('nav-menu');
 
-const state = {
-  saved: readList(storage.saved),
-  complete: readList(storage.complete),
-  theme: localStorage.getItem(storage.theme) || "system"
-};
+  if (header && toggle && menu) {
+    var isOpen = function () { return toggle.getAttribute('aria-expanded') === 'true'; };
+    var setOpen = function (open) {
+      header.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    };
 
-const topicGrid = document.querySelector("#topic-grid");
-const articleGrid = document.querySelector("#article-grid");
-const relatedList = document.querySelector("#related-list");
-const searchInput = document.querySelector("#site-search");
-const difficultyFilter = document.querySelector("#difficulty-filter");
-const themeToggle = document.querySelector(".theme-toggle");
-const navToggle = document.querySelector(".nav-toggle");
-const siteNav = document.querySelector("#primary-nav");
-const year = document.querySelector("#year");
-const markFeatured = document.querySelector("#mark-featured");
-const saveFeatured = document.querySelector("#save-featured");
-const copyLink = document.querySelector("#copy-link");
-const newsletter = document.querySelector(".newsletter");
+    toggle.addEventListener('click', function () { setOpen(!isOpen()); });
 
-init();
-
-function init() {
-  if (year) {
-    year.textContent = new Date().getFullYear();
-  }
-
-  applyTheme();
-  renderTopics();
-  renderArticles();
-  renderRelated();
-  updateDashboard();
-  bindEvents();
-}
-
-function bindEvents() {
-  searchInput?.addEventListener("input", renderArticles);
-  difficultyFilter?.addEventListener("change", renderArticles);
-
-  themeToggle?.addEventListener("click", () => {
-    const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-    state.theme = next;
-    localStorage.setItem(storage.theme, next);
-    applyTheme();
-    updateDashboard();
-  });
-
-  navToggle?.addEventListener("click", () => {
-    const isOpen = siteNav.classList.toggle("is-open");
-    document.body.classList.toggle("nav-open", isOpen);
-    navToggle.setAttribute("aria-expanded", String(isOpen));
-  });
-
-  siteNav?.addEventListener("click", () => {
-    siteNav.classList.remove("is-open");
-    document.body.classList.remove("nav-open");
-    navToggle?.setAttribute("aria-expanded", "false");
-  });
-
-  markFeatured?.addEventListener("click", () => {
-    toggleItem(state.complete, articles[0].id);
-    writeList(storage.complete, state.complete);
-    updateDashboard();
-    renderArticles();
-  });
-
-  saveFeatured?.addEventListener("click", () => {
-    toggleItem(state.saved, articles[0].id);
-    writeList(storage.saved, state.saved);
-    updateDashboard();
-    renderArticles();
-  });
-
-  copyLink?.addEventListener("click", async () => {
-    const url = window.location.href.split("#")[0] + "#article-template";
-    try {
-      await navigator.clipboard.writeText(url);
-      copyLink.textContent = "Copied";
-      setTimeout(() => {
-        copyLink.textContent = "Copy link";
-      }, 1600);
-    } catch {
-      copyLink.textContent = "Copy failed";
-    }
-  });
-
-  newsletter?.addEventListener("submit", event => {
-    event.preventDefault();
-    const note = newsletter.querySelector(".form-note");
-    if (note) {
-      note.textContent = "Signup captured as a placeholder. Connect your newsletter provider here.";
-    }
-  });
-}
-
-function renderTopics() {
-  if (!topicGrid) return;
-
-  topicGrid.innerHTML = topics
-    .map(topic => {
-      const count = articles.filter(article => article.topic === topic).length;
-      const crossoverCount = articles.filter(article => article.tags.join(" ").includes(topic.toLowerCase())).length;
-      return `
-        <article class="topic-card">
-          <span>${count} article slot${count === 1 ? "" : "s"} &middot; ${crossoverCount} crossover${crossoverCount === 1 ? "" : "s"}</span>
-          <h3><a href="#library">${topic}</a></h3>
-          <p>Landing page shell for article lists, prerequisites, learning paths, glossary terms, and topic FAQ.</p>
-        </article>
-      `;
-    })
-    .join("");
-}
-
-function renderArticles() {
-  if (!articleGrid) return;
-
-  const query = (searchInput?.value || "").trim().toLowerCase();
-  const difficulty = difficultyFilter?.value || "all";
-  const filtered = articles.filter(article => {
-    const searchable = [
-      article.title,
-      article.topic,
-      article.difficulty,
-      article.summary,
-      article.prerequisites.join(" "),
-      article.tags.join(" ")
-    ]
-      .join(" ")
-      .toLowerCase();
-
-    const matchesQuery = !query || searchable.includes(query);
-    const matchesDifficulty = difficulty === "all" || article.difficulty === difficulty;
-    return matchesQuery && matchesDifficulty;
-  });
-
-  articleGrid.innerHTML = filtered.length
-    ? filtered.map(renderArticleCard).join("")
-    : `<p>No article metadata matches the current search and filter.</p>`;
-
-  articleGrid.querySelectorAll("[data-save]").forEach(button => {
-    button.addEventListener("click", () => {
-      toggleItem(state.saved, button.dataset.save);
-      writeList(storage.saved, state.saved);
-      updateDashboard();
-      renderArticles();
+    // Close after choosing a link, on Escape, on a click outside, or when focus leaves the header.
+    menu.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('a')) setOpen(false);
     });
-  });
-
-  articleGrid.querySelectorAll("[data-complete]").forEach(button => {
-    button.addEventListener("click", () => {
-      toggleItem(state.complete, button.dataset.complete);
-      writeList(storage.complete, state.complete);
-      updateDashboard();
-      renderArticles();
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && isOpen()) {
+        setOpen(false);
+        toggle.focus();
+      }
     });
+    document.addEventListener('click', function (e) {
+      if (isOpen() && !header.contains(e.target)) setOpen(false);
+    });
+    header.addEventListener('focusout', function (e) {
+      if (isOpen() && e.relatedTarget && !header.contains(e.relatedTarget)) setOpen(false);
+    });
+
+    var desktop = window.matchMedia('(min-width: 52.0625rem)');
+    var onBreakpoint = function () { if (desktop.matches) setOpen(false); };
+    if (desktop.addEventListener) desktop.addEventListener('change', onBreakpoint);
+    else if (desktop.addListener) desktop.addListener(onBreakpoint);
+
+    toggle.hidden = false;
+    doc.classList.add('js-nav');   // only now collapse the links behind the button
+  }
+
+  /* ---------- 2. Gallery lightbox (native <dialog>) ---------- */
+  var dialog = document.getElementById('lightbox');
+  var tiles = toArray(document.querySelectorAll('.g-tile[data-type]'));
+
+  if (dialog && typeof dialog.showModal === 'function' && tiles.length) {
+    var lbMedia = dialog.querySelector('.lb-media');
+    var lbTitle = dialog.querySelector('.lb-title');
+    var lbMeta = dialog.querySelector('.lb-meta');
+    var lbDesc = dialog.querySelector('.lb-desc');
+    var lbCount = dialog.querySelector('.lb-count');
+    var lbClose = dialog.querySelector('.lb-close');
+    // Previous / Next keep focus on the button, so announce the new item for screen readers.
+    var lbLive = document.createElement('p');
+    lbLive.className = 'visually-hidden';
+    lbLive.setAttribute('aria-live', 'polite');
+    dialog.appendChild(lbLive);
+    var current = 0;
+    var returnTo = null;
+    var byId = {};
+    tiles.forEach(function (t, i) { byId[t.id] = i; });
+
+    var textOf = function (root, sel) {
+      var el = root && root.querySelector(sel);
+      return el ? el.textContent.replace(/\s+/g, ' ').trim() : '';
+    };
+
+    // Pause and unload any video (stops the download too) and drop any YouTube iframe.
+    var clearMedia = function () {
+      var video = lbMedia.querySelector('video');
+      if (video) {
+        video.pause();
+        video.removeAttribute('src');
+        video.load();
+      }
+      var hadFocus = lbMedia.contains(document.activeElement);
+      lbMedia.textContent = '';
+      if (hadFocus) lbClose.focus();
+    };
+
+    var render = function (index) {
+      clearMedia();
+      current = (index + tiles.length) % tiles.length;
+      var tile = tiles[current];
+      var item = tile.closest('.g-item');
+      var type = tile.getAttribute('data-type');
+      var title = textOf(item, '.g-title');
+      var el;
+
+      if (type === 'image') {
+        var thumb = tile.querySelector('img');
+        el = document.createElement('img');
+        el.src = tile.getAttribute('href');
+        el.alt = thumb ? thumb.alt : title;
+        if (tile.getAttribute('data-w')) el.width = +tile.getAttribute('data-w');
+        if (tile.getAttribute('data-h')) el.height = +tile.getAttribute('data-h');
+      } else if (type === 'video') {
+        el = document.createElement('video');
+        el.controls = true;
+        el.playsInline = true;
+        el.preload = 'metadata';
+        el.poster = tile.getAttribute('data-poster') || '';
+        el.setAttribute('aria-label', title);
+        el.src = tile.getAttribute('href');
+      } else {
+        // YouTube: privacy-enhanced embed, created on open and removed on close
+        el = document.createElement('iframe');
+        el.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(tile.getAttribute('data-yt')) + '?autoplay=1&rel=0';
+        el.title = title + ' (YouTube video)';
+        el.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture; fullscreen');
+        el.setAttribute('allowfullscreen', '');
+        el.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      }
+
+      lbMedia.appendChild(el);
+      lbTitle.textContent = title;
+      lbMeta.textContent = textOf(item, '.g-meta');
+      lbDesc.textContent = tile.getAttribute('data-desc') || '';
+      lbCount.textContent = (current + 1) + ' / ' + tiles.length;
+      lbLive.textContent = dialog.open ? (current + 1) + ' of ' + tiles.length + ': ' + title : '';
+
+      if (type === 'video') {
+        var playing = el.play();
+        if (playing && playing.catch) playing.catch(function () {});   // the controls are still there
+      }
+    };
+
+    var openAt = function (index, trigger) {
+      returnTo = trigger || tiles[index];
+      render(index);
+      if (!dialog.open) {
+        dialog.showModal();
+        doc.classList.add('lb-open');
+      }
+      lbClose.focus();
+    };
+
+    // Escape fires the dialog's own cancel → close, so every way out ends here.
+    dialog.addEventListener('close', function () {
+      clearMedia();
+      doc.classList.remove('lb-open');
+      if (returnTo && typeof returnTo.focus === 'function') returnTo.focus();
+      returnTo = null;
+    });
+
+    lbClose.addEventListener('click', function () { dialog.close(); });
+    dialog.querySelector('.lb-prev').addEventListener('click', function () { render(current - 1); });
+    dialog.querySelector('.lb-next').addEventListener('click', function () { render(current + 1); });
+
+    // A click on the dark background (not on the picture, video or controls) closes it.
+    dialog.addEventListener('click', function (e) {
+      if (e.target === dialog || e.target === lbMedia || e.target.classList.contains('lb-inner')) dialog.close();
+    });
+
+    dialog.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      var tag = e.target && e.target.tagName;
+      if (tag === 'VIDEO' || tag === 'IFRAME') return;   // leave arrow keys to the video's own seeking
+      e.preventDefault();
+      render(current + (e.key === 'ArrowRight' ? 1 : -1));
+    });
+
+    // Tiles, and links elsewhere on the page that point at a tile, open the lightbox.
+    // Modified clicks (new tab, etc.) keep the plain link behaviour.
+    document.addEventListener('click', function (e) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var link = e.target.closest && e.target.closest('.g-tile[data-type], a[data-gallery-open]');
+      if (!link) return;
+      var index = link.hasAttribute('data-gallery-open') ? byId[link.getAttribute('data-gallery-open')] : tiles.indexOf(link);
+      if (index === undefined || index < 0) return;
+      e.preventDefault();
+      openAt(index, link);
+    });
+
+    // Now that these open in place, drop the "opens YouTube in a new tab" notes and the ↗ cues.
+    toArray(document.querySelectorAll('.nojs-note')).forEach(function (n) { n.parentNode.removeChild(n); });
+    toArray(document.querySelectorAll('a[data-gallery-open] .ext-cue')).forEach(function (n) { n.hidden = true; });
+    tiles.concat(toArray(document.querySelectorAll('a[data-gallery-open]'))).forEach(function (a) {
+      a.setAttribute('aria-haspopup', 'dialog');
+    });
+  }
+
+  /* ---------- 3. Print: show every "Read more" and every revealed block ---------- */
+  var reveals = toArray(document.querySelectorAll('.reveal'));
+  var openedForPrint = [];
+  window.addEventListener('beforeprint', function () {
+    reveals.forEach(function (el) { el.classList.add('is-in'); });
+    openedForPrint = toArray(document.querySelectorAll('details:not([open])'));
+    openedForPrint.forEach(function (d) { d.open = true; });
   });
-}
+  window.addEventListener('afterprint', function () {
+    openedForPrint.forEach(function (d) { d.open = false; });
+    openedForPrint = [];
+  });
 
-function renderArticleCard(article) {
-  const saved = state.saved.includes(article.id);
-  const complete = state.complete.includes(article.id);
-  const difficultyClass = article.difficulty === "Advanced" ? " advanced" : "";
+  /* ---------- 4. Scroll reveal ---------- */
+  if (reduceMotion || !('IntersectionObserver' in window) || !reveals.length) return;
 
-  return `
-    <article class="article-card">
-      <span class="badge${difficultyClass}">${article.difficulty}</span>
-      <div>
-        <p class="meta-line">${article.topic} &middot; ${readTime(article.words)} min read</p>
-        <h3><a href="#article-template">${article.title}</a></h3>
-        <p>${article.summary}</p>
-      </div>
-      <p class="meta-line">Prerequisites: ${article.prerequisites.join(", ")}</p>
-      <div class="card-actions">
-        <button class="small-action" type="button" data-save="${article.id}" aria-pressed="${saved}">
-          ${saved ? "Saved" : "Save"}
-        </button>
-        <button class="small-action" type="button" data-complete="${article.id}" aria-pressed="${complete}">
-          ${complete ? "Complete" : "Mark complete"}
-        </button>
-      </div>
-    </article>
-  `;
-}
+  var inView = function (el) {
+    var r = el.getBoundingClientRect();
+    return r.top < window.innerHeight && r.bottom > 0;
+  };
 
-function renderRelated() {
-  if (!relatedList) return;
+  // Anything already on screen is marked visible first, so switching on the hidden state never flashes it.
+  var pending = [];
+  reveals.forEach(function (el) {
+    if (inView(el)) el.classList.add('is-in');
+    else pending.push(el);
+  });
 
-  const seed = articles[0];
-  const related = articles
-    .filter(article => article.id !== seed.id)
-    .map(article => ({
-      ...article,
-      score: article.tags.filter(tag => seed.tags.includes(tag)).length
-    }))
-    .sort((a, b) => b.score - a.score || a.title.localeCompare(b.title))
-    .slice(0, 4);
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
 
-  relatedList.innerHTML = related
-    .map(article => `<li><a href="#library">${article.title}</a></li>`)
-    .join("");
-}
+  pending.forEach(function (el) {
+    // Stagger siblings slightly so rows and lists settle in sequence; clear the delay once shown
+    // so later transitions on the same element are not held back.
+    var index = 0;
+    var sib = el.previousElementSibling;
+    while (sib) {
+      if (sib.classList.contains('reveal')) index += 1;
+      sib = sib.previousElementSibling;
+    }
+    if (index > 0) {
+      el.style.transitionDelay = Math.min(index, 5) * 70 + 'ms';
+      var clearDelay = function (e) {
+        if (e.target !== el) return;
+        el.style.transitionDelay = '';
+        el.removeEventListener('transitionend', clearDelay);
+      };
+      el.addEventListener('transitionend', clearDelay);
+    }
+    io.observe(el);
+  });
 
-function updateDashboard() {
-  const completePercent = articles.length ? Math.round((state.complete.length / articles.length) * 100) : 0;
-  setText("#saved-count", state.saved.length);
-  setText("#progress-count", `${completePercent}%`);
-  setText("#dashboard-saved", state.saved.length);
-  setText("#dashboard-complete", state.complete.length);
-  setText("#dashboard-theme", labelTheme());
+  doc.classList.add('js-reveal');
 
-  if (markFeatured) {
-    markFeatured.textContent = state.complete.includes(articles[0].id)
-      ? "Sample complete"
-      : "Mark sample complete";
-  }
-
-  if (saveFeatured) {
-    saveFeatured.textContent = state.saved.includes(articles[0].id)
-      ? "Sample saved"
-      : "Save sample article";
-  }
-}
-
-function applyTheme() {
-  if (state.theme === "system") {
-    document.documentElement.removeAttribute("data-theme");
-    return;
-  }
-
-  document.documentElement.dataset.theme = state.theme;
-}
-
-function labelTheme() {
-  if (state.theme !== "system") return capitalize(state.theme);
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "System dark" : "System light";
-}
-
-function readTime(words) {
-  return Math.max(1, Math.ceil(words / 220));
-}
-
-function readList(key) {
-  try {
-    const value = JSON.parse(localStorage.getItem(key) || "[]");
-    return Array.isArray(value) ? value : [];
-  } catch {
-    return [];
-  }
-}
-
-function writeList(key, value) {
-  localStorage.setItem(key, JSON.stringify(value));
-}
-
-function toggleItem(list, value) {
-  const index = list.indexOf(value);
-  if (index >= 0) {
-    list.splice(index, 1);
-  } else {
-    list.push(value);
-  }
-}
-
-function setText(selector, value) {
-  const element = document.querySelector(selector);
-  if (element) {
-    element.textContent = value;
-  }
-}
-
-function capitalize(value) {
-  return value.charAt(0).toUpperCase() + value.slice(1);
-}
+  // Safety net for in-page jumps: reveal whatever lands on screen.
+  window.addEventListener('hashchange', function () {
+    window.setTimeout(function () {
+      reveals.forEach(function (el) { if (inView(el)) el.classList.add('is-in'); });
+    }, 60);
+  });
+})();
