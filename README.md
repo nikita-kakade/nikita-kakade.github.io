@@ -1,5 +1,7 @@
 # nikita-kakade.github.io
 
+**Live site: [nikita-kakade.github.io](https://nikita-kakade.github.io/)**
+
 Personal portfolio of **Nikita Kakade**, a student engineer at Dayton Regional STEM School in Dayton, Ohio.
 It is a single, static page with a warm editorial look a soft serif (Fraunces) with DM Sans and DM Mono, round award "stamps", and one small gallery of photos and videos.
 
@@ -12,7 +14,8 @@ GitHub Pages serves it straight from the repository root.
 python3 -m http.server 8001
 ```
 
-Then open <http://127.0.0.1:8001/>. Use the local server rather than opening the file directly, so the page behaves as it does online.
+Then open `http://127.0.0.1:8001/` in your browser. That address only works on your own computer while the command above is running;
+the public site is always at https://nikita-kakade.github.io/.
 
 ## Where to edit
 
