@@ -1,8 +1,7 @@
 # nikita-kakade.github.io
 
 Personal portfolio of **Nikita Kakade**, a student engineer at Dayton Regional STEM School in Dayton, Ohio.
-It is a single, static page with a warm, food-brand editorial look inspired by chobani.com: forest green and cream,
-a soft serif (Fraunces) with DM Sans and DM Mono, round award "stamps", and one small gallery of photos and videos.
+It is a single, static page with a warm editorial look a soft serif (Fraunces) with DM Sans and DM Mono, round award "stamps", and one small gallery of photos and videos.
 
 It is plain HTML, CSS and a little vanilla JavaScript. There is no build step, framework or tracking.
 GitHub Pages serves it straight from the repository root.
